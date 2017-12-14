@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * Created by Mc on 2017/12/14.
  */
 @Repository
-public class LagouPositionInfoDaoImplImpl extends BaseDaoImpl<LagouPositionInfo> implements LagouPostionInfoDao {
+public class LagouPositionInfoDaoImpl extends BaseDaoImpl<LagouPositionInfo> implements LagouPostionInfoDao {
 
     @Override
     public void setProcessed(int postionId) {
