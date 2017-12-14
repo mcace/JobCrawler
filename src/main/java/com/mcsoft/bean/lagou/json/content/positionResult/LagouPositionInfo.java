@@ -1,59 +1,148 @@
 package com.mcsoft.bean.lagou.json.content.positionResult;
 
+import com.mcsoft.bean.DBModel;
+import com.mcsoft.utils.BeanUtils;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.lang.reflect.Field;
+
 /**
  * 拉勾网Ajax请求响应JSON对应职位信息实体类
  * Created by Mc on 2017/12/8.
  */
-public class LagouPositionInfo {
-    private int companyId;
+@Entity
+@Table(name = "lagou_position_info")
+@DynamicInsert
+@DynamicUpdate
+public class LagouPositionInfo implements DBModel {
+    @Column(name = "companyId")
+    private Integer companyId;
+    @Column(name = "positionName")
     private String positionName;
+    @Column(name = "workYear")
     private String workYear;
+    @Column(name = "education")
     private String education;
+    @Column(name = "jobNature")
     private String jobNature;
+    @Column(name = "financeStage")
     private String financeStage;
+    @Column(name = "companyLogo")
     private String companyLogo;
+    @Column(name = "industryField")
     private String industryField;
+    @Column(name = "city")
     private String city;
+    @Column(name = "salary")
     private String salary;
-    private int positionId;
+    @Id
+    @Column(name = "positionId")
+    private Integer positionId;
+    @Column(name = "positionAdvantage")
     private String positionAdvantage;
+    @Column(name = "companyShortName")
     private String companyShortName;
+    @Column(name = "district")
     private String district;
+    @Column(name = "createTime")
     private String createTime;
-    private int score;
-    private int approve;
-    private String[] positionLables;
-    private String[] industryLables;
-    private int publisherId;
-    private String[] companyLabelList;
+    @Column(name = "score")
+    private Integer score;
+    @Column(name = "approve")
+    private Integer approve;
+    @Column(name = "positionLables")
+    //private String[] positionLables;
+    private String positionLables;
+    @Column(name = "industryLables")
+    //private String[] industryLables;
+    private String industryLables;
+    @Column(name = "publisherId")
+    private Integer publisherId;
+    @Column(name = "companyLabelList")
+    //private String[] companyLabelList;
+    private String companyLabelList;
+    @Column(name = "companySize")
     private String companySize;
+    @Column(name = "businessZones")
     private String businessZones;
-    private String longitude;
+    @Column(name = "Longitude")
+    private String Longitude;
+    @Column(name = "latitude")
     private String latitude;
+    @Column(name = "companyFullName")
     private String companyFullName;
-    private int adWord;
+    @Column(name = "adWord")
+    private Integer adWord;
+    @Column(name = "formatCreateTime")
     private String formatCreateTime;
+    @Column(name = "imState")
     private String imState;
-    private int lastLogin;
+    @Column(name = "lastLogin")
+    private Long lastLogin;
+    @Column(name = "explain_str")
     private String explain;
+    @Column(name = "plus")
     private String plus;
-    private int pcShow;
-    private int appShow;
-    private int deliver;
+    @Column(name = "pcShow")
+    private Integer pcShow;
+    @Column(name = "appShow")
+    private Integer appShow;
+    @Column(name = "deliver")
+    private Integer deliver;
+    @Column(name = "gradeDescription")
     private String gradeDescription;
+    @Column(name = "promotionScoreExplain")
     private String promotionScoreExplain;
+    @Column(name = "firstType")
     private String firstType;
+    @Column(name = "secondType")
     private String secondType;
-    private int isSchoolJob;
+    @Column(name = "isSchoolJob")
+    private Integer isSchoolJob;
+    @Column(name = "subwayline")
     private String subwayline;
+    @Column(name = "stationname")
     private String stationname;
+    @Column(name = "linestaion")
     private String linestaion;
+    @Column(name = "processed")
+    private Integer processed = 0;
 
-    public int getCompanyId() {
+    public LagouPositionInfo() {
+        //setDefault();
+    }
+
+    private void setDefault() {
+        Field[] fields = this.getClass().getDeclaredFields();
+        try {
+            for (Field field : fields) {
+                if (field.getType() == String.class) {
+                    field.setAccessible(true);
+                    field.set(this, "");
+                } else if (field.getType() == Integer.class) {
+                    field.setAccessible(true);
+                    field.set(this, 0);
+                } else if (field.getType() == Long.class) {
+                    field.setAccessible(true);
+                    field.set(this, 0L);
+                }
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Integer getCompanyId() {
         return companyId;
     }
 
-    public void setCompanyId(int companyId) {
+    public void setCompanyId(Integer companyId) {
         this.companyId = companyId;
     }
 
@@ -129,11 +218,11 @@ public class LagouPositionInfo {
         this.salary = salary;
     }
 
-    public int getPositionId() {
+    public Integer getPositionId() {
         return positionId;
     }
 
-    public void setPositionId(int positionId) {
+    public void setPositionId(Integer positionId) {
         this.positionId = positionId;
     }
 
@@ -169,51 +258,245 @@ public class LagouPositionInfo {
         this.createTime = createTime;
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
-    public int getApprove() {
+    public Integer getApprove() {
         return approve;
     }
 
-    public void setApprove(int approve) {
+    public void setApprove(Integer approve) {
         this.approve = approve;
     }
 
-    public String[] getPositionLables() {
+    public String getPositionLables() {
         return positionLables;
     }
 
-    public void setPositionLables(String[] positionLables) {
+    public void setPositionLables(String positionLables) {
         this.positionLables = positionLables;
     }
 
-    public String[] getIndustryLables() {
+    public String getIndustryLables() {
         return industryLables;
     }
 
-    public void setIndustryLables(String[] industryLables) {
+    public void setIndustryLables(String industryLables) {
         this.industryLables = industryLables;
     }
 
-    public int getPublisherId() {
+    public Integer getPublisherId() {
         return publisherId;
     }
 
-    public void setPublisherId(int publisherId) {
+    public void setPublisherId(Integer publisherId) {
         this.publisherId = publisherId;
     }
 
-    public String[] getCompanyLabelList() {
+    public String getCompanyLabelList() {
         return companyLabelList;
     }
 
-    public void setCompanyLabelList(String[] companyLabelList) {
+    public void setCompanyLabelList(String companyLabelList) {
         this.companyLabelList = companyLabelList;
+    }
+
+    public String getCompanySize() {
+        return companySize;
+    }
+
+    public void setCompanySize(String companySize) {
+        this.companySize = companySize;
+    }
+
+    public String getBusinessZones() {
+        return businessZones;
+    }
+
+    public void setBusinessZones(String businessZones) {
+        this.businessZones = businessZones;
+    }
+
+    public String getLongitude() {
+        return Longitude;
+    }
+
+    public void setLongitude(String Longitude) {
+        this.Longitude = Longitude;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getCompanyFullName() {
+        return companyFullName;
+    }
+
+    public void setCompanyFullName(String companyFullName) {
+        this.companyFullName = companyFullName;
+    }
+
+    public Integer getAdWord() {
+        return adWord;
+    }
+
+    public void setAdWord(Integer adWord) {
+        this.adWord = adWord;
+    }
+
+    public String getFormatCreateTime() {
+        return formatCreateTime;
+    }
+
+    public void setFormatCreateTime(String formatCreateTime) {
+        this.formatCreateTime = formatCreateTime;
+    }
+
+    public String getImState() {
+        return imState;
+    }
+
+    public void setImState(String imState) {
+        this.imState = imState;
+    }
+
+    public Long getLastLogin() {
+        return lastLogin;
+    }
+
+    public void setLastLogin(Long lastLogin) {
+        this.lastLogin = lastLogin;
+    }
+
+    public String getExplain() {
+        return explain;
+    }
+
+    public void setExplain(String explain) {
+        this.explain = explain;
+    }
+
+    public String getPlus() {
+        return plus;
+    }
+
+    public void setPlus(String plus) {
+        this.plus = plus;
+    }
+
+    public Integer getPcShow() {
+        return pcShow;
+    }
+
+    public void setPcShow(Integer pcShow) {
+        this.pcShow = pcShow;
+    }
+
+    public Integer getAppShow() {
+        return appShow;
+    }
+
+    public void setAppShow(Integer appShow) {
+        this.appShow = appShow;
+    }
+
+    public Integer getDeliver() {
+        return deliver;
+    }
+
+    public void setDeliver(Integer deliver) {
+        this.deliver = deliver;
+    }
+
+    public String getGradeDescription() {
+        return gradeDescription;
+    }
+
+    public void setGradeDescription(String gradeDescription) {
+        this.gradeDescription = gradeDescription;
+    }
+
+    public String getPromotionScoreExplain() {
+        return promotionScoreExplain;
+    }
+
+    public void setPromotionScoreExplain(String promotionScoreExplain) {
+        this.promotionScoreExplain = promotionScoreExplain;
+    }
+
+    public String getFirstType() {
+        return firstType;
+    }
+
+    public void setFirstType(String firstType) {
+        this.firstType = firstType;
+    }
+
+    public String getSecondType() {
+        return secondType;
+    }
+
+    public void setSecondType(String secondType) {
+        this.secondType = secondType;
+    }
+
+    public Integer getIsSchoolJob() {
+        return isSchoolJob;
+    }
+
+    public void setIsSchoolJob(Integer isSchoolJob) {
+        this.isSchoolJob = isSchoolJob;
+    }
+
+    public String getSubwayline() {
+        return subwayline;
+    }
+
+    public void setSubwayline(String subwayline) {
+        this.subwayline = subwayline;
+    }
+
+    public String getStationname() {
+        return stationname;
+    }
+
+    public void setStationname(String stationname) {
+        this.stationname = stationname;
+    }
+
+    public String getLinestaion() {
+        return linestaion;
+    }
+
+    public void setLinestaion(String linestaion) {
+        this.linestaion = linestaion;
+    }
+
+    public Integer getProcessed() {
+        return processed;
+    }
+
+    public void setProcessed(Integer processed) {
+        this.processed = processed;
+    }
+
+    @Override
+    public Serializable getId() {
+        return positionId;
+    }
+
+    @Override
+    public boolean equals(Object target) {
+        return BeanUtils.equals(this, target);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by Mc on 2017/12/7.
  */
 public class ConfigLoader {
-    private static final String LAGOU_HEADER = "header.properties";
+    private static final String LAGOU_HEADER = "headers.properties";
 
     public static Map<String, String> loadLagouHeaders() {
         return loadConfig(LAGOU_HEADER);
