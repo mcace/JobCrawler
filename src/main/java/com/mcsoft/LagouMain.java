@@ -30,9 +30,6 @@ public class LagouMain {
             LagouFormParam body = new LagouFormParam();
             body.setPn(String.valueOf(pn));
             crawler.setBody(body.toFormParam());
-            if(pn == 10){
-                System.out.println("第十页了哦");
-            }
             LagouJson json = crawler.craw(Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams
                     ()));
             if (!json.isSuccess()) {
@@ -54,8 +51,8 @@ public class LagouMain {
 //                }
 //            }
             try {
-                //休息5秒再继续爬，避免被ban
-                Thread.sleep(5000);
+                //休息10秒再继续爬，避免被ban
+                Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

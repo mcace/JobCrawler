@@ -23,12 +23,13 @@ public class PageLoader {
         ByteArrayOutputStream baos = null;
         DataOutputStream outputStream = null;
         InputStream is = null;
+        HttpURLConnection connection = null;
         try {
             if (!url.startsWith("http://") && !url.startsWith("https://"))
                 url = "http://" + url;
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
-            HttpURLConnection connection = (HttpURLConnection) realUrl.openConnection();
+            connection = (HttpURLConnection) realUrl.openConnection();
             connection.setDoInput(true);
             connection.setDoOutput(true);
             if (null == method || "".equals(method)) method = "GET";
@@ -71,6 +72,7 @@ public class PageLoader {
                 if (outputStream != null) outputStream.close();
                 if (baos != null) baos.close();
                 if (is != null) is.close();
+                if (connection != null) connection.disconnect();
             } catch (IOException e) {
                 e.printStackTrace();
             }
