@@ -22,11 +22,12 @@ public class LagouMain {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring.xml");
         LagouPositionInfoService infoService = context.getBean(LagouPositionInfoService.class);
         //爬取一级页面JSON数据
-        int pn = 1;
-        int maxPn = 30;
+        int pn = 141;
+        int maxPn = 200;
         JsonCrawler<LagouJson> crawler = new JsonCrawler<>(METHOD_POST, null, ConfigLoader
                 .loadLagouHeaders(), LagouJson.class);
         for (; pn <= maxPn; pn++) {
+            System.out.println("当前页：" + pn);
             LagouFormParam body = new LagouFormParam();
             body.setPn(String.valueOf(pn));
             crawler.setBody(body.toFormParam());

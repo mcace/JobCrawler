@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-12-15 16:58:37
+Date: 2017-12-15 20:55:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,9 +27,9 @@ CREATE TABLE `lagou_position_info` (
   `companyId` int(11) unsigned NOT NULL DEFAULT '0',
   `createTime` char(19) NOT NULL DEFAULT '',
   `city` varchar(5) NOT NULL DEFAULT '',
-  `businessZones` varchar(40) NOT NULL DEFAULT '',
-  `companyFullName` varchar(40) NOT NULL DEFAULT '',
-  `companyShortName` varchar(20) NOT NULL DEFAULT '',
+  `businessZones` varchar(80) NOT NULL DEFAULT '',
+  `companyFullName` varchar(80) NOT NULL DEFAULT '',
+  `companyShortName` varchar(40) NOT NULL DEFAULT '',
   `companyLabelList` varchar(40) NOT NULL DEFAULT '',
   `companySize` varchar(14) NOT NULL DEFAULT '',
   `companyLogo` varchar(80) NOT NULL DEFAULT '',
@@ -52,7 +52,7 @@ CREATE TABLE `lagou_position_info` (
   `lastLogin` bigint(20) unsigned NOT NULL DEFAULT '0',
   `pcShow` int(1) unsigned NOT NULL DEFAULT '0',
   `positionName` varchar(40) NOT NULL DEFAULT '',
-  `positionLables` varchar(50) NOT NULL DEFAULT '',
+  `positionLables` varchar(80) NOT NULL DEFAULT '',
   `positionAdvantage` varchar(50) NOT NULL DEFAULT '',
   `promotionScoreExplain` varchar(10) NOT NULL DEFAULT '',
   `publisherId` int(11) unsigned NOT NULL DEFAULT '0',
@@ -60,7 +60,7 @@ CREATE TABLE `lagou_position_info` (
   `processed` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '数据是否已经被处理',
   `subwayline` varchar(20) NOT NULL DEFAULT '',
   `score` int(3) unsigned NOT NULL DEFAULT '0',
-  `secondType` varchar(10) NOT NULL DEFAULT '',
+  `secondType` varchar(30) NOT NULL DEFAULT '',
   `salary` varchar(10) NOT NULL DEFAULT '',
   `stationname` varchar(10) NOT NULL DEFAULT '',
   `workYear` varchar(10) NOT NULL DEFAULT '',
