@@ -42,7 +42,7 @@ public class LagouURLParam {
                 builder.append(URLEncoder.encode(px, "utf8"));
                 builder.append("&");
             }
-            if (YX.NoLimit.equals(yx)) {
+            if (!YX.NoLimit.equals(yx)) {
                 builder.append("yx=");
                 builder.append(URLEncoder.encode(yx.toString(), "utf8"));
                 builder.append("&");

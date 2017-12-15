@@ -9,6 +9,14 @@ import java.io.Serializable;
  * Created by Mc on 2017/12/14.
  */
 public interface BaseDao<T extends DBModel> {
+
+    /**
+     * 保存或更新对象
+     *
+     * @param obj 待保存或更新的对象
+     */
+    void saveOrUpdate(T obj);
+
     /**
      * 保存对象
      *

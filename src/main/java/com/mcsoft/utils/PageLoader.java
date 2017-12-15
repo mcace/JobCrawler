@@ -57,6 +57,12 @@ public class PageLoader {
                 baos.write(buffer, 0, len);
             }
             response = baos.toString();
+            //获取SetCookie头进行设置Cookie
+            String cookie = connection.getHeaderField("Set-Cookie");
+            if (null != headers && null != cookie && !"".equals(cookie)) {
+                headers.put("Cookie", cookie);
+            }
+            //System.out.println(connection.getHeaderField("Set-Cookie"));
             //System.out.println(jsonString);
         } catch (IOException e) {
             e.printStackTrace();

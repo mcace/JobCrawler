@@ -21,6 +21,12 @@ public class BaseDaoImpl<T extends DBModel> implements BaseDao<T> {
     }
 
     @Override
+    public void saveOrUpdate(T obj) {
+        BeanUtils.setNullToDefault(obj);
+        this.getCurrentSession().saveOrUpdate(obj);
+    }
+
+    @Override
     public Serializable save(T obj) {
         Session session = this.getCurrentSession();
         Object src_obj = session.get(obj.getClass(), obj.getId());
@@ -34,11 +40,11 @@ public class BaseDaoImpl<T extends DBModel> implements BaseDao<T> {
     public Serializable update(T obj) {
         Session session = this.getCurrentSession();
         Object src_obj = session.get(obj.getClass(), obj.getId());
+        BeanUtils.setNullToDefault(obj);
         if (src_obj == null || src_obj.equals(obj)) {
             return null;
         }
-        BeanUtils.copyNotNullField(obj, src_obj);
-        session.update(src_obj);
+        session.update(obj);
         return obj.getId();
     }
 
@@ -57,8 +63,23 @@ public class BaseDaoImpl<T extends DBModel> implements BaseDao<T> {
 
     @Override
     public void batchSaveOrUpdate(T[] objs) {
+        Session session = this.getCurrentSession();
         for (T obj : objs) {
-            this.getCurrentSession().saveOrUpdate(obj);
+            Object entity = session.get(obj.getClass(), obj.getId());
+            if (null == entity) {
+                session.save(obj);
+            } else {
+                BeanUtils.setNullToDefault(obj);
+                //由于此时事务中还未提交数据库，查出来的null字段还是null，而不是数据库中的默认值，因此要处理
+                BeanUtils.setNullToDefault(entity);
+                if (!obj.equals(entity)) {
+                    try {
+                        session.update(obj);
+                    } catch (Exception e) {
+                        session.merge(obj);
+                    }
+                }
+            }
         }
     }
 }

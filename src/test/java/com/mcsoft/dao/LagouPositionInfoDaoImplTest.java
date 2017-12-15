@@ -16,26 +16,51 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
 @Transactional
-@Rollback(false)
+@Rollback(true)
 public class LagouPositionInfoDaoImplTest {
     @Resource
-    private LagouPostionInfoDao lagouPostionInfoDao;
+    private LagouPositionInfoDao lagouPositionInfoDao;
 
     @Test
     public void save() {
         LagouPositionInfo info = new LagouPositionInfo();
-        info.setPositionId(3);
-        info.setBusinessZones("d");
+        info.setPositionId(0);
+        System.out.println(lagouPositionInfoDao.save(info));
+        LagouPositionInfo info1 = lagouPositionInfoDao.findById(0);
+        assert null != info1;
+        System.out.println(info1.getId());
 
-        System.out.println(lagouPostionInfoDao.update(info));
-        info.setPositionId(4);
-        System.out.println(lagouPostionInfoDao.save(info));
-    }
+
+     }
 
     @Test
     public void setProcessed() throws Exception {
-
-
+        save();
+        lagouPositionInfoDao.setProcessed(0);
+        LagouPositionInfo info = lagouPositionInfoDao.findById(0);
+        assert 1 == info.getProcessed();
     }
 
+    @Test
+    public void delete() {
+        save();
+        lagouPositionInfoDao.deleteById(0);
+        LagouPositionInfo info = lagouPositionInfoDao.findById(0);
+        assert null == info;
+    }
+
+    @Test
+    public void update() {
+        save();
+        LagouPositionInfo info = lagouPositionInfoDao.findById(0);
+        info.setBusinessZones("ddd");
+        lagouPositionInfoDao.update(info);
+        LagouPositionInfo info1 = lagouPositionInfoDao.findById(0);
+        assert "ddd".equals(info1.getBusinessZones());
+    }
+
+    @Test
+    public void batchSave() {
+
+    }
 }

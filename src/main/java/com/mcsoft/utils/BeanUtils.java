@@ -3,6 +3,7 @@ package com.mcsoft.utils;
 import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Map;
 
 /**
  * 实体类对象操作工具类
@@ -97,5 +98,37 @@ public class BeanUtils {
             }
         }
         return true;
+    }
+
+    /**
+     * 用默认的键值对将对象的实例变量中为null值的赋予默认值
+     *
+     * @param src 要赋值的对象
+     */
+    public static void setNullToDefault(Object src) {
+        setNullToDefault(src, Constants.DEFAULT_VALUES_MAP);
+    }
+
+    /**
+     * 将对象的实例变量中为null值的赋予默认值
+     *
+     * @param src              要赋值的对象
+     * @param defaultValuesMap 默认值键值对，可以使用{@link Constants#DEFAULT_VALUES_MAP}
+     */
+    public static void setNullToDefault(Object src, Map<Class, Object> defaultValuesMap) {
+        if (null == src || null == defaultValuesMap || defaultValuesMap.size() == 0) {
+            return;
+        }
+        Field[] fields = src.getClass().getDeclaredFields();
+        for (Field field : fields) {
+            try {
+                field.setAccessible(true);
+                if (null == field.get(src)) {
+                    field.set(src, defaultValuesMap.get(field.getType()));
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
