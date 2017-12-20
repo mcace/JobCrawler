@@ -1,7 +1,7 @@
-package com.mcsoft.bean.lagou.json;
+package com.mcsoft.bean.lagou.positionList;
 
-import com.mcsoft.bean.lagou.json.content.LagouHrInfo;
-import com.mcsoft.bean.lagou.json.content.LagouPositionResult;
+import com.mcsoft.bean.lagou.positionList.content.LagouHrInfo;
+import com.mcsoft.bean.lagou.positionList.content.LagouPositionResult;
 
 import java.util.Map;
 

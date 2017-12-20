@@ -1,6 +1,6 @@
 package com.mcsoft.crawler;
 
-import com.mcsoft.utils.PageLoader;
+import com.mcsoft.crawler.handler.impl.DefaultHtmlHandler;
 
 import java.util.Map;
 
@@ -10,12 +10,8 @@ import java.util.Map;
  * Created by Mc on 2017/12/8.
  */
 public class HttpCrawler extends AbstractCrawler<String> {
-    public HttpCrawler(String method, String body, Map<String, String> headers) {
-        super(method, body, headers);
-    }
 
-    @Override
-    public String craw(String url) {
-        return PageLoader.loadPage(url, method, headers, body);
+    public HttpCrawler(Map<String, String> headers) {
+        super("GET", null, headers, new DefaultHtmlHandler());
     }
 }

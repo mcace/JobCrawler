@@ -1,4 +1,4 @@
-package com.mcsoft.bean.lagou;
+package com.mcsoft.bean.lagou.params;
 
 import com.mcsoft.utils.StringUtils;
 

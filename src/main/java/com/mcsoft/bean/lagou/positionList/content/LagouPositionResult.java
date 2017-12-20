@@ -1,9 +1,9 @@
-package com.mcsoft.bean.lagou.json.content;
+package com.mcsoft.bean.lagou.positionList.content;
 
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouLocationInfo;
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouQueryAnalysisInfo;
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouStrategyProperty;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouLocationInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouQueryAnalysisInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouStrategyProperty;
 
 /**
  * 拉勾网Ajax请求响应JSON中positionResult对应实体类

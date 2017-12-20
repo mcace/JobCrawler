@@ -1,6 +1,7 @@
 package com.mcsoft.dao;
 
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
+import com.alibaba.fastjson.JSON;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
@@ -16,7 +17,7 @@ import javax.annotation.Resource;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:spring.xml")
 @Transactional
-@Rollback(true)
+@Rollback(false)
 public class LagouPositionInfoDaoImplTest {
     @Resource
     private LagouPositionInfoDao lagouPositionInfoDao;
@@ -31,7 +32,7 @@ public class LagouPositionInfoDaoImplTest {
         System.out.println(info1.getId());
 
 
-     }
+    }
 
     @Test
     public void setProcessed() throws Exception {
@@ -63,4 +64,13 @@ public class LagouPositionInfoDaoImplTest {
     public void batchSave() {
 
     }
+
+    @Test
+    public void findNotProcessed() throws Exception {
+        LagouPositionInfo info = lagouPositionInfoDao.findNotProcessed();
+        if (null != info)
+            System.out.println(JSON.toJSON(info));
+
+    }
+
 }

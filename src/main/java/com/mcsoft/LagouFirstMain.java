@@ -1,10 +1,10 @@
 package com.mcsoft;
 
-import com.mcsoft.bean.lagou.LagouFormParam;
-import com.mcsoft.bean.lagou.LagouJson;
-import com.mcsoft.bean.lagou.LagouURLParam;
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
-import com.mcsoft.crawler.JsonCrawler;
+import com.mcsoft.bean.lagou.params.LagouFormParam;
+import com.mcsoft.bean.lagou.LagouPositionList;
+import com.mcsoft.bean.lagou.params.LagouURLParam;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
+import com.mcsoft.crawler.AjaxCrawler;
 import com.mcsoft.service.LagouPositionInfoService;
 import com.mcsoft.utils.ConfigLoader;
 import com.mcsoft.utils.Constants;
@@ -17,21 +17,21 @@ import static com.mcsoft.utils.Constants.METHOD_POST;
  * 拉钩抓取main方法
  * Created by Mc on 2017/12/9.
  */
-public class LagouMain {
+public class LagouFirstMain {
     public static void main(String[] args) throws Exception {
         ApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring.xml");
         LagouPositionInfoService infoService = context.getBean(LagouPositionInfoService.class);
         //爬取一级页面JSON数据
         int pn = 141;
         int maxPn = 200;
-        JsonCrawler<LagouJson> crawler = new JsonCrawler<>(METHOD_POST, null, ConfigLoader
-                .loadLagouHeaders(), LagouJson.class);
+        AjaxCrawler<LagouPositionList> crawler = new AjaxCrawler<>(METHOD_POST, null, ConfigLoader
+                .loadLagouAjaxHeaders(), LagouPositionList.class);
         for (; pn <= maxPn; pn++) {
             System.out.println("当前页：" + pn);
             LagouFormParam body = new LagouFormParam();
             body.setPn(String.valueOf(pn));
             crawler.setBody(body.toFormParam());
-            LagouJson json = crawler.craw(Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams
+            LagouPositionList json = crawler.craw(Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams
                     ()));
             if (!json.isSuccess()) {
 //                System.err.println("发生错误");

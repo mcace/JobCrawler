@@ -1,6 +1,6 @@
 package com.mcsoft.service;
 
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
 import com.mcsoft.dao.LagouPositionInfoDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +16,16 @@ import javax.annotation.Resource;
 public class LagouPositionInfoServiceImpl implements LagouPositionInfoService {
     @Resource
     private LagouPositionInfoDao lagouPositionInfoDao;
+
+    @Override
+    public LagouPositionInfo findOneUnprocessed() {
+        return lagouPositionInfoDao.findNotProcessed();
+    }
+
+    @Override
+    public void setProcessed(int id) {
+        lagouPositionInfoDao.setProcessed(id);
+    }
 
     @Override
     public void saveOrUpdate(LagouPositionInfo obj) {

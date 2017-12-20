@@ -1,4 +1,4 @@
-package com.mcsoft.bean.lagou.json.content.positionResult;
+package com.mcsoft.bean.lagou.positionList.content.positionResult;
 
 import com.mcsoft.bean.DBModel;
 import com.mcsoft.utils.BeanUtils;
@@ -17,9 +17,9 @@ import java.lang.reflect.Field;
  * Created by Mc on 2017/12/8.
  */
 @Entity
-@Table(name = "lagou_position_info")
 @DynamicInsert
 @DynamicUpdate
+@Table(name = "lagou_position_info")
 public class LagouPositionInfo implements DBModel {
     @Column(name = "companyId")
     private Integer companyId;

@@ -1,6 +1,6 @@
 package com.mcsoft.dao;
 
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
 
 import java.io.Serializable;
 
@@ -27,4 +27,10 @@ public interface LagouPositionInfoDao extends BaseDao<LagouPositionInfo>{
      * @param postionId 职位id
      */
     void setProcessed(int postionId);
+
+    /**
+     * 随机选取一条没有被处理过的数据
+     * @return processed字段为0的数据
+     */
+    LagouPositionInfo findNotProcessed();
 }

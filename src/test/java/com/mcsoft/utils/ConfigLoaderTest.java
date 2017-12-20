@@ -10,7 +10,7 @@ import java.util.Map;
 public class ConfigLoaderTest {
     @Test
     public void loadConfig() throws Exception {
-        Map<String, String> map = ConfigLoader.loadConfig( "headers.properties");
+        Map<String, String> map = ConfigLoader.loadLagouAjaxHeaders();
         for (Map.Entry entry : map.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }

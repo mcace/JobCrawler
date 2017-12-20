@@ -1,12 +1,12 @@
 package com.mcsoft.bean.lagou;
 
-import com.mcsoft.bean.lagou.json.LagouContent;
+import com.mcsoft.bean.lagou.positionList.LagouContent;
 
 /**
  * 拉勾网Ajax请求响应JSON对应实体类
  * Created by Mc on 2017/12/8.
  */
-public class LagouJson {
+public class LagouPositionList {
     private boolean success;
     private String msg;
     private String requestId;

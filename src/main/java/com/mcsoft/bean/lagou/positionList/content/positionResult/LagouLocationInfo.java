@@ -1,4 +1,4 @@
-package com.mcsoft.bean.lagou.json.content.positionResult;
+package com.mcsoft.bean.lagou.positionList.content.positionResult;
 
 /**
  * 拉勾网Ajax请求响应JSON中positionResult对应实体类

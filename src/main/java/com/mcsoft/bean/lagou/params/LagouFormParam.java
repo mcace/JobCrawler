@@ -1,4 +1,4 @@
-package com.mcsoft.bean.lagou;
+package com.mcsoft.bean.lagou.params;
 
 /**
  * 拉勾网Ajax提交表单参数

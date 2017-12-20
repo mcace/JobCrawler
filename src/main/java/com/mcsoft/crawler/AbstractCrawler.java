@@ -1,5 +1,8 @@
 package com.mcsoft.crawler;
 
+import com.mcsoft.crawler.handler.CrawHandler;
+import com.mcsoft.utils.PageLoader;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,15 +11,18 @@ import java.util.Map;
  * Created by Mc on 2017/12/8.
  */
 public abstract class AbstractCrawler<T> implements Crawler {
-    protected String method;
-    protected String body;
-    protected Map<String, String> headers;
+    private String method;
+    private String body;
+    private Map<String, String> headers;
+    private CrawHandler<T> handler;
 
-    public AbstractCrawler(String method, String body, Map<String, String> headers) {
+    public AbstractCrawler(String method, String body, Map<String, String> headers, CrawHandler<T>
+            handler) {
         if (null == method || "".equals(method)) method = "GET";
         this.method = method;
         this.body = body;
         this.headers = headers;
+        this.handler = handler;
     }
 
     public void setMethod(String method) {
@@ -37,5 +43,14 @@ public abstract class AbstractCrawler<T> implements Crawler {
 
     public void removeAllHeaders() {
         this.headers = new HashMap<>();
+    }
+
+    @Override
+    public T craw(String url) {
+        if (null == url || "".equals(url)) {
+            return null;
+        }
+        String content = PageLoader.loadPage(url, method, headers, body);
+        return handler.handle(content);
     }
 }

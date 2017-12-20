@@ -1,4 +1,4 @@
-package com.mcsoft.bean.lagou.json.content;
+package com.mcsoft.bean.lagou.positionList.content;
 
 /**
  * 拉勾网Ajax请求响应JSON中hrInfoMap对应实体类

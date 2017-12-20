@@ -1,12 +1,11 @@
 package com.mcsoft.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Map;
+import java.util.zip.DeflaterInputStream;
+import java.util.zip.GZIPInputStream;
 
 /**
  * 提取页面工具类
@@ -20,7 +19,7 @@ public class PageLoader {
     public static String loadPage(String url, String method, Map<String, String> headers, String
             body) {
         String response = "";
-        ByteArrayOutputStream baos = null;
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream outputStream = null;
         InputStream is = null;
         HttpURLConnection connection = null;
@@ -48,29 +47,43 @@ public class PageLoader {
                 // 建立实际的连接
                 connection.connect();
             }
-            // 获取所有响应头字段
-            is = connection.getInputStream();       //以输入流的形式返回
+
+            // 获取压缩编码字段
+            String contentEncoding = connection.getContentEncoding();
+            // 处理压缩编码
+            switch (null == contentEncoding ? "" : contentEncoding) {
+                case "gzip": {
+                    is = new GZIPInputStream(connection.getInputStream());
+                    break;
+                }
+                case "deflate": {
+                    is = new DeflaterInputStream(connection.getInputStream());
+                    break;
+                }
+                default: {
+                    is = connection.getInputStream();       //以输入流的形式返回
+                }
+            }
+
             //将输入流转换成字符串
-            baos = new ByteArrayOutputStream();
             byte[] buffer = new byte[1024];
             int len = 0;
             while ((len = is.read(buffer)) != -1) {
                 baos.write(buffer, 0, len);
             }
             response = baos.toString();
+
             //获取SetCookie头进行设置Cookie
             String cookie = connection.getHeaderField("Set-Cookie");
-            if (null != headers && null != cookie && !"".equals(cookie)) {
+            if (null != headers && !"".equals(cookie)) {
                 headers.put("Cookie", cookie);
             }
-            //System.out.println(connection.getHeaderField("Set-Cookie"));
-            //System.out.println(jsonString);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
+                baos.close();
                 if (outputStream != null) outputStream.close();
-                if (baos != null) baos.close();
                 if (is != null) is.close();
                 if (connection != null) connection.disconnect();
             } catch (IOException e) {

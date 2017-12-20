@@ -1,9 +1,13 @@
 package com.mcsoft.dao;
 
-import com.mcsoft.bean.lagou.json.content.positionResult.LagouPositionInfo;
+import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 拉钩职位信息DAO
@@ -30,5 +34,19 @@ public class LagouPositionInfoDaoImpl extends BaseDaoImpl<LagouPositionInfo> imp
             info.setProcessed(1);
             this.update(info);
         }
+    }
+
+    @Override
+    public LagouPositionInfo findNotProcessed() {
+        String hql = "from LagouPositionInfo where processed = 0";
+        Session session = this.getCurrentSession();
+        Criteria criteria = session.createCriteria(LagouPositionInfo.class);
+        criteria.add(Restrictions.eq("processed",0));
+        criteria.setMaxResults(1);
+        List positionInfoList = criteria.list();
+        if(0 != positionInfoList.size()){
+            return (LagouPositionInfo) positionInfoList.get(0);
+        }
+        return null;
     }
 }
