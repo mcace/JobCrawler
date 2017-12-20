@@ -1,6 +1,6 @@
 package com.mcsoft.crawler;
 
-import com.mcsoft.crawler.handler.CrawHandler;
+import com.mcsoft.crawler.handler.DataHandler;
 import com.mcsoft.utils.PageLoader;
 
 import java.util.HashMap;
@@ -14,9 +14,9 @@ public abstract class AbstractCrawler<T> implements Crawler {
     private String method;
     private String body;
     private Map<String, String> headers;
-    private CrawHandler<T> handler;
+    private DataHandler<T> handler;
 
-    public AbstractCrawler(String method, String body, Map<String, String> headers, CrawHandler<T>
+    public AbstractCrawler(String method, String body, Map<String, String> headers, DataHandler<T>
             handler) {
         if (null == method || "".equals(method)) method = "GET";
         this.method = method;

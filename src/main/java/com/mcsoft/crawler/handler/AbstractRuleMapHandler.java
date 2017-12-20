@@ -6,7 +6,7 @@ import java.util.Map;
  * 抽象附带规则型的数据处理器
  * Created by Mc on 2017/12/20.
  */
-public abstract class AbstractRuleMapHandler<T> implements CrawHandler<T> {
+public abstract class AbstractRuleMapHandler<T> implements DataHandler<T> {
     private Map<String, String> ruleMap;
 
     public AbstractRuleMapHandler(Map<String, String> ruleMap) {

@@ -1,13 +1,13 @@
 package com.mcsoft.crawler.handler.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.mcsoft.crawler.handler.CrawHandler;
+import com.mcsoft.crawler.handler.DataHandler;
 
 /**
  * JSON数据默认处理器
  * Created by Mc on 2017/12/20.
  */
-public class DefaultJsonHandler<T> implements CrawHandler<T> {
+public class DefaultJsonHandler<T> implements DataHandler<T> {
     private Class<T> clazz;//JSON转实体类对应CLASS
 
     public DefaultJsonHandler(Class<T> clazz) {

@@ -1,6 +1,6 @@
 package com.mcsoft.crawler;
 
-import com.mcsoft.crawler.handler.CrawHandler;
+import com.mcsoft.crawler.handler.DataHandler;
 
 import java.util.Map;
 
@@ -11,7 +11,7 @@ import java.util.Map;
  */
 public class CustomCrawler<T> extends AbstractCrawler<T> {
 
-    public CustomCrawler(String method, String body, Map<String, String> headers, CrawHandler<T> handler) {
+    public CustomCrawler(String method, String body, Map<String, String> headers, DataHandler<T> handler) {
         super(method, body, headers, handler);
     }
 }
