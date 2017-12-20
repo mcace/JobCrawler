@@ -9,9 +9,9 @@ import java.util.Map;
  * 会将HTTP请求响应内容完整爬下来
  * Created by Mc on 2017/12/8.
  */
-public class HttpCrawler extends AbstractCrawler<String> {
+public class HtmlCrawler extends AbstractCrawler<String> {
 
-    public HttpCrawler(Map<String, String> headers) {
+    public HtmlCrawler(Map<String, String> headers) {
         super("GET", null, headers, new DefaultHtmlHandler());
     }
 }
