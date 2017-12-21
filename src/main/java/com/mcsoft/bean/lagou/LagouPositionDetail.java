@@ -1,27 +1,56 @@
 package com.mcsoft.bean.lagou;
 
 import com.mcsoft.bean.DBModel;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 拉勾网职位详情实体类
  * Created by Mc on 2017/12/20.
  */
-public class LagouPositionDetail implements DBModel{
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "lagou_position_detail")
+public class LagouPositionDetail implements DBModel {
+    @Id
+    @Column(name = "positionId")
     private int positionId;
+    @Column(name = "companyId")
     private int companyId;
+    @Column(name = "createTime")
+    private String createTime;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "company")
     private String company;
+    @Column(name = "education")
     private String education;
+    @Column(name = "positionName")
     private String positionName;
+    @Column(name = "positionAdvantage")
     private String positionAdvantage;
+    @Column(name = "positionDescription")
     private String positionDescription;
+    @Column(name = "positionAddress")
     private String positionAddress;
-    private String positionLables;
+    @Column(name = "positionLabels")
+    private String positionLabels;
+    @Column(name = "firstType")
     private String firstType;
+    @Column(name = "secondType")
     private String secondType;
+    @Column(name = "positionNature")
     private String positionNature;
+    @Column(name = "salary")
     private String salary;
+    @Column(name = "workYear")
     private String workYear;
 
     public int getPositionId() {
@@ -38,6 +67,22 @@ public class LagouPositionDetail implements DBModel{
 
     public void setCompanyId(int companyId) {
         this.companyId = companyId;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getCompany() {
@@ -88,12 +133,12 @@ public class LagouPositionDetail implements DBModel{
         this.positionAddress = positionAddress;
     }
 
-    public String getPositionLables() {
-        return positionLables;
+    public String getPositionLabels() {
+        return positionLabels;
     }
 
-    public void setPositionLables(String positionLables) {
-        this.positionLables = positionLables;
+    public void setPositionLabels(String positionLabels) {
+        this.positionLabels = positionLabels;
     }
 
     public String getFirstType() {

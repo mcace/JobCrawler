@@ -5,10 +5,10 @@
 当数据类可以直接通过JSON转换时，可以直接使用com.mcsoft.crawler.AjaxCrawler类
 当直接需要HTML源码时，可以直接使用com.mcsoft.crawler.HtmlCrawler类
 当需要匹配HTML源码并输出类似Map<String,String>类型的数据时，可以使用com.mcsoft.crawler.HtmlJSoupCrawler类
-关于RuleMap的规则可以参考resources/craw-rules/lagou-position-detail.properties文件
+    关于RuleMap的规则可以参考resources/craw-rules/lagou-position-detail.properties文件
 当你有自己实现的DataHandler时，使用CustomCrawler，自定义返回类型并将DataHandler实现类的对象传入构造方法中
     提示：你可以在自定义的DataHandler里加一个HtmlJSoupHandler，这个Handler的handle方法会根据RuleMap返回KV对集合
-    ，你可以在后续特殊处理这个KV对集合，然后返回你需要的数据类
+    ，你可以在后续特殊处理这个KV对集合，然后返回你需要的数据类，相当于这个Handler是HtmlJSoupHandler的包装类
 上述三个类实现了Crawler接口，该接口只有一个方法craw(url)，接收url并返回指定类型的对象
 实际使用中Crawler还需要根据情况设置请求方法（String），请求头（Map<String,String>）和请求体（String）
 在进行爬取时这些参数会附加进去

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-12-15 20:55:03
+Date: 2017-12-22 00:14:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,7 +43,7 @@ CREATE TABLE `lagou_position_info` (
   `gradeDescription` varchar(10) NOT NULL DEFAULT '',
   `jobNature` varchar(4) NOT NULL DEFAULT '',
   `industryField` varchar(20) NOT NULL DEFAULT '',
-  `industryLables` varchar(50) NOT NULL DEFAULT '',
+  `industryLabels` varchar(50) NOT NULL DEFAULT '',
   `isSchoolJob` int(1) unsigned NOT NULL DEFAULT '0',
   `imState` varchar(20) NOT NULL DEFAULT '',
   `longitude` varchar(20) NOT NULL DEFAULT '',
@@ -52,7 +52,7 @@ CREATE TABLE `lagou_position_info` (
   `lastLogin` bigint(20) unsigned NOT NULL DEFAULT '0',
   `pcShow` int(1) unsigned NOT NULL DEFAULT '0',
   `positionName` varchar(40) NOT NULL DEFAULT '',
-  `positionLables` varchar(80) NOT NULL DEFAULT '',
+  `positionLabels` varchar(80) NOT NULL DEFAULT '',
   `positionAdvantage` varchar(50) NOT NULL DEFAULT '',
   `promotionScoreExplain` varchar(10) NOT NULL DEFAULT '',
   `publisherId` int(11) unsigned NOT NULL DEFAULT '0',

@@ -10,8 +10,7 @@ import java.util.Map;
  */
 public class HtmlJSoupCrawler extends AbstractCrawler<Map<String, String>> {
 
-    public HtmlJSoupCrawler(String method, String body, Map<String, String> headers, Map<String,
-            String> ruleMap) {
-        super(method, body, headers, new HtmlJSoupHandler(ruleMap));
+    public HtmlJSoupCrawler(Map<String, String> headers, Map<String, String> ruleMap) {
+        super("GET", null, headers, new HtmlJSoupHandler(ruleMap));
     }
 }

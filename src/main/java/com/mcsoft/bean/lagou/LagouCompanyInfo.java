@@ -1,28 +1,54 @@
 package com.mcsoft.bean.lagou;
 
 import com.mcsoft.bean.DBModel;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 拉勾网公司信息实体类
  * Created by Mc on 2017/12/20.
  */
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "lagou_company_info")
 public class LagouCompanyInfo implements DBModel{
+    @Id
+    @Column(name = "companyId")
     private int companyId;
+    @Column(name = "companyFullName")
     private String companyFullName;
+    @Column(name = "companyShortName")
     private String companyShortName;
+    @Column(name = "companyLabelList")
     private String companyLabelList;
+    @Column(name = "companySize")
     private String companySize;
+    @Column(name = "companyLogo")
     private String companyLogo;
+    @Column(name = "companyHref")
     private String companyHref;
+    @Column(name = "district")
     private String district;
+    @Column(name = "businessZones")
     private String businessZones;
+    @Column(name = "financeStage")
     private String financeStage;
+    @Column(name = "industryField")
     private String industryField;
+    @Column(name = "industryLables")
     private String industryLables;
+    @Column(name = "lineStation")
     private String lineStation;
+    @Column(name = "subwayLine")
     private String subwayLine;
+    @Column(name = "stationName")
     private String stationName;
 
     public int getCompanyId() {

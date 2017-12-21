@@ -1,27 +1,52 @@
 package com.mcsoft.bean.lagou;
 
 import com.mcsoft.bean.DBModel;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 拉勾网面试反馈实体类
  * Created by Mc on 2017/12/20.
  */
+@Entity
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "lagou_interview_experience")
 public class LagouInterviewExperience implements DBModel{
+    @Id
+    @Column(name = "id")
     private int id;
+    @Column(name = "companyId")
     private int companyId;
+    @Column(name = "positionId")
     private int positionId;
+    @Column(name = "companyScore")
     private int companyScore;//公司环境
+    @Column(name = "describeScore")
     private int describeScore;//描述相符
+    @Column(name = "interviewerScore")
     private int interviewerScore;//面试官
+    @Column(name = "comprehensiveScore")
     private int comprehensiveScore;//综合分
+    @Column(name = "myScore")
     private int myScore;
+    @Column(name = "content")
     private String content;//评价
+    @Column(name = "positionName")
     private String positionName;
+    @Column(name = "positionType")
     private String positionType;
+    @Column(name = "createTime")
     private String createTime;
+    @Column(name = "usefulCount")
     private int usefulCount;//[有用]数量
+    @Column(name = "tags")
     private String tags;
 
     @Override
