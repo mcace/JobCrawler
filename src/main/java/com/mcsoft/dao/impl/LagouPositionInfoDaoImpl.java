@@ -1,6 +1,7 @@
-package com.mcsoft.dao;
+package com.mcsoft.dao.impl;
 
 import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
+import com.mcsoft.dao.LagouPositionInfoDao;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -38,7 +39,6 @@ public class LagouPositionInfoDaoImpl extends BaseDaoImpl<LagouPositionInfo> imp
 
     @Override
     public LagouPositionInfo findNotProcessed() {
-        String hql = "from LagouPositionInfo where processed = 0";
         Session session = this.getCurrentSession();
         Criteria criteria = session.createCriteria(LagouPositionInfo.class);
         criteria.add(Restrictions.eq("processed",0));

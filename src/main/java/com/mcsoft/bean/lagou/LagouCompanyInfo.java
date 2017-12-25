@@ -42,8 +42,8 @@ public class LagouCompanyInfo implements DBModel{
     private String financeStage;
     @Column(name = "industryField")
     private String industryField;
-    @Column(name = "industryLables")
-    private String industryLables;
+    @Column(name = "industryLabels")
+    private String industryLabels;
     @Column(name = "lineStation")
     private String lineStation;
     @Column(name = "subwayLine")
@@ -139,12 +139,12 @@ public class LagouCompanyInfo implements DBModel{
         this.industryField = industryField;
     }
 
-    public String getIndustryLables() {
-        return industryLables;
+    public String getIndustryLabels() {
+        return industryLabels;
     }
 
-    public void setIndustryLables(String industryLables) {
-        this.industryLables = industryLables;
+    public void setIndustryLabels(String industryLabels) {
+        this.industryLabels = industryLabels;
     }
 
     public String getLineStation() {

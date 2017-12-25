@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50712
 Source Host           : localhost:23306
-Source Database       : lagou
+Source Database       : lagou_test
 
 Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-12-22 00:14:25
+Date: 2017-12-25 22:01:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,9 +28,9 @@ CREATE TABLE `lagou_position_detail` (
   `education` varchar(5) NOT NULL DEFAULT '',
   `positionName` varchar(40) NOT NULL DEFAULT '',
   `positionAdvantage` varchar(50) NOT NULL DEFAULT '',
-  `positionDescription` varchar(2000) NOT NULL DEFAULT '',
+  `positionDescription` varchar(4000) NOT NULL DEFAULT '',
   `positionAddress` varchar(80) NOT NULL DEFAULT '',
-  `positionLables` varchar(80) NOT NULL DEFAULT '',
+  `positionLabels` varchar(80) NOT NULL DEFAULT '',
   `positionNature` varchar(4) NOT NULL DEFAULT '',
   `firstType` varchar(20) NOT NULL DEFAULT '',
   `secondType` varchar(30) NOT NULL DEFAULT '',

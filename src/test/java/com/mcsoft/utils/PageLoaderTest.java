@@ -14,7 +14,7 @@ public class PageLoaderTest {
     public void loadPage() throws Exception {
         Map<String, String> headers = ConfigLoader.loadLagouAjaxHeaders();
         String body = LagouFormParam.defaultFormParams();
-        String url = Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams());
+        String url = Constants.getLagouPositionAjaxUrl(LagouURLParam.defaultURLParams());
         String result = PageLoader.loadPage(url, "POST",
                 headers, body);
         System.out.println(result);

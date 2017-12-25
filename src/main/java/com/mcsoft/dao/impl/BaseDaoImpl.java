@@ -1,6 +1,7 @@
-package com.mcsoft.dao;
+package com.mcsoft.dao.impl;
 
 import com.mcsoft.bean.DBModel;
+import com.mcsoft.dao.BaseDao;
 import com.mcsoft.utils.BeanUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

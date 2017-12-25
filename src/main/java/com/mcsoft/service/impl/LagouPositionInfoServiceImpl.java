@@ -1,7 +1,8 @@
-package com.mcsoft.service;
+package com.mcsoft.service.impl;
 
 import com.mcsoft.bean.lagou.positionList.content.positionResult.LagouPositionInfo;
 import com.mcsoft.dao.LagouPositionInfoDao;
+import com.mcsoft.service.LagouPositionInfoService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

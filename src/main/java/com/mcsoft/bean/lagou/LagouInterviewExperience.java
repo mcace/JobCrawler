@@ -18,7 +18,7 @@ import java.io.Serializable;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "lagou_interview_experience")
-public class LagouInterviewExperience implements DBModel{
+public class LagouInterviewExperience implements DBModel {
     @Id
     @Column(name = "id")
     private int id;
@@ -38,6 +38,8 @@ public class LagouInterviewExperience implements DBModel{
     private int myScore;
     @Column(name = "content")
     private String content;//评价
+    @Column(name = "evaluation")
+    private String evaluation;//其他评价
     @Column(name = "positionName")
     private String positionName;
     @Column(name = "positionType")
@@ -120,6 +122,14 @@ public class LagouInterviewExperience implements DBModel{
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getEvaluation() {
+        return evaluation;
+    }
+
+    public void setEvaluation(String evaluation) {
+        this.evaluation = evaluation;
     }
 
     public String getPositionName() {

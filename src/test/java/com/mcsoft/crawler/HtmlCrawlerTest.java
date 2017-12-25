@@ -15,7 +15,7 @@ public class HtmlCrawlerTest {
         String url = "https://www.lagou.com/jobs/39136.html";
         //HtmlCrawler htmlCrawler = new HtmlCrawler("GET", null, null);
 
-//        String url = Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams());
+//        String url = Constants.getLagouPositionAjaxUrl(LagouURLParam.defaultURLParams());
 //        String body = LagouFormParam.defaultFormParams();
 //        Map<String, String> headers = ConfigLoader.loadConfig("lagou-json-lagou-ajax-headers.properties");
         Map<String, String> headers = ConfigLoader.loadLagouHtmlHeaders();

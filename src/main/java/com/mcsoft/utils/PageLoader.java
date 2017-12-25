@@ -48,22 +48,15 @@ public class PageLoader {
                 connection.connect();
             }
 
+            //判断状态码
+            if (!isStatusOK(connection.getResponseCode())) {
+                return "";
+            }
+
             // 获取压缩编码字段
             String contentEncoding = connection.getContentEncoding();
             // 处理压缩编码
-            switch (null == contentEncoding ? "" : contentEncoding) {
-                case "gzip": {
-                    is = new GZIPInputStream(connection.getInputStream());
-                    break;
-                }
-                case "deflate": {
-                    is = new DeflaterInputStream(connection.getInputStream());
-                    break;
-                }
-                default: {
-                    is = connection.getInputStream();       //以输入流的形式返回
-                }
-            }
+            is = handleContentEncoding(contentEncoding, connection);
 
             //将输入流转换成字符串
             byte[] buffer = new byte[1024];
@@ -92,5 +85,35 @@ public class PageLoader {
         }
 
         return response;
+    }
+
+    //处理状态码
+    private static boolean isStatusOK(int statusCode) {
+        statusCode = statusCode / 100;
+        switch (statusCode) {
+            case 3:
+            case 4:
+            case 5: {
+                return false;
+            }
+            default: {
+                return true;
+            }
+        }
+    }
+
+    //处理压缩字符
+    private static InputStream handleContentEncoding(String contentEncoding, HttpURLConnection connection) throws IOException {
+        switch (null == contentEncoding ? "" : contentEncoding) {
+            case "gzip": {
+                return new GZIPInputStream(connection.getInputStream());
+            }
+            case "deflate": {
+                return new DeflaterInputStream(connection.getInputStream());
+            }
+            default: {
+                return connection.getInputStream();       //以输入流的形式返回
+            }
+        }
     }
 }

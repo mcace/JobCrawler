@@ -10,5 +10,5 @@ public interface Crawler<T> {
      * @param url 爬取url
      * @return 爬取出的数据
      */
-    T craw(String url);
+    T craw(String url) throws Exception;
 }

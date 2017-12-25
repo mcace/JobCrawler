@@ -9,8 +9,15 @@ import java.util.Map;
  * Created by Mc on 2017/12/8.
  */
 public class AjaxCrawler<T> extends AbstractCrawler<T> {
+    public AjaxCrawler(Class<T> clazz) {
+        this(null, clazz);
+    }
 
-    public AjaxCrawler(String method, String body, Map<String, String> headers, Class<T> clazz) {
-        super(method, body, headers,new DefaultJsonHandler<>(clazz));
+    public AjaxCrawler(Map<String, String> headers, Class<T> clazz) {
+        this(null, headers, clazz);
+    }
+
+    public AjaxCrawler(String body, Map<String, String> headers, Class<T> clazz) {
+        super("POST", body, headers, new DefaultJsonHandler<>(clazz));
     }
 }

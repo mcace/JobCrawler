@@ -57,11 +57,11 @@ public class LagouPositionInfo implements DBModel {
     @Column(name = "approve")
     private Integer approve;
     @Column(name = "positionLabels")
-    //private String[] positionLabels;
-    private String positionLabels;
+    //private String[] positionLables;
+    private String positionLables;
     @Column(name = "industryLabels")
     //private String[] industryLabels;
-    private String industryLabels;
+    private String industryLables;
     @Column(name = "publisherId")
     private Integer publisherId;
     @Column(name = "companyLabelList")
@@ -105,11 +105,11 @@ public class LagouPositionInfo implements DBModel {
     private String secondType;
     @Column(name = "isSchoolJob")
     private Integer isSchoolJob;
-    @Column(name = "subwayline")
+    @Column(name = "subwayLine")
     private String subwayline;
-    @Column(name = "stationname")
+    @Column(name = "stationName")
     private String stationname;
-    @Column(name = "linestaion")
+    @Column(name = "lineStation")
     private String linestaion;
     @Column(name = "processed")
     private Integer processed = 0;
@@ -274,20 +274,20 @@ public class LagouPositionInfo implements DBModel {
         this.approve = approve;
     }
 
-    public String getPositionLabels() {
-        return positionLabels;
+    public String getPositionLables() {
+        return positionLables;
     }
 
-    public void setPositionLabels(String positionLabels) {
-        this.positionLabels = positionLabels;
+    public void setPositionLables(String positionLables) {
+        this.positionLables = positionLables;
     }
 
-    public String getIndustryLabels() {
-        return industryLabels;
+    public String getIndustryLables() {
+        return industryLables;
     }
 
-    public void setIndustryLabels(String industryLabels) {
-        this.industryLabels = industryLabels;
+    public void setIndustryLables(String industryLables) {
+        this.industryLables = industryLables;
     }
 
     public Integer getPublisherId() {

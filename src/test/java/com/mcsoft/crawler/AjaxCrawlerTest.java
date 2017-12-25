@@ -17,10 +17,10 @@ public class AjaxCrawlerTest {
     @Test
     public void craw() throws Exception {
         LagouPositionList lagouPositionList;
-        String url = Constants.getLagouAjaxUrl(LagouURLParam.defaultURLParams());
+        String url = Constants.getLagouPositionAjaxUrl(LagouURLParam.defaultURLParams());
         Map<String, String> headers = ConfigLoader.loadLagouAjaxHeaders();
         String body = LagouFormParam.defaultFormParams();
-        AjaxCrawler<LagouPositionList> crawler = new AjaxCrawler<>("POST", body, headers, LagouPositionList.class);
+        AjaxCrawler<LagouPositionList> crawler = new AjaxCrawler<>(body, headers, LagouPositionList.class);
         lagouPositionList = crawler.craw(url);
         System.out.println(JSON.toJSON(lagouPositionList));
     }

@@ -11,7 +11,7 @@ import java.util.Map;
 public class HtmlJSoupCrawlerTest {
 
     @Test
-    public void handle() {
+    public void handle() throws Exception {
         Map<String, String> headers = ConfigLoader.loadLagouHtmlHeaders();
         Map<String, String> ruleMap = ConfigLoader.loadLagouPositionDetailRules();
         String url = "https://www.lagou.com/jobs/39136.html";

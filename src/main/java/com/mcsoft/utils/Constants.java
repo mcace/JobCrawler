@@ -9,7 +9,7 @@ import java.util.HashMap;
  */
 public class Constants {
     //拉勾网查询链接
-    public static String LAGOU_AJAX_URL = "https://www.lagou.com/jobs/positionAjax.json";
+    public static String LAGOU_POSITION_AJAX_URL = "https://www.lagou.com/jobs/positionAjax.json";
     //不同数据类型的默认值设置，用于在处理实体类时设置默认值
     public static HashMap<Class, Object> DEFAULT_VALUES_MAP = new HashMap<>();
     public static String METHOD_POST = "POST";
@@ -17,7 +17,7 @@ public class Constants {
     public static String LAGOU_POSITION_URL = "https://www.lagou.com/jobs/[job_id].html";
     //拉勾网职位面试评价JSON链接
     public static String LAGOU_POSITION_INTERVIEW_EXP_URL = "https://www.lagou" +
-            ".com/interview/experience/byPosition.positionList";
+            ".com/interview/experience/byPosition.json";
 
     static {
         DEFAULT_VALUES_MAP.put(String.class, "");
@@ -34,8 +34,8 @@ public class Constants {
      * @param urlParams URL参数
      * @return 完整查询连接
      */
-    public static String getLagouAjaxUrl(String urlParams) {
-        return LAGOU_AJAX_URL + "?" + urlParams;
+    public static String getLagouPositionAjaxUrl(String urlParams) {
+        return LAGOU_POSITION_AJAX_URL + "?" + urlParams;
     }
 
     /**

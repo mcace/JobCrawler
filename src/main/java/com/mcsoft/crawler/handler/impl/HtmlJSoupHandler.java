@@ -1,6 +1,7 @@
 package com.mcsoft.crawler.handler.impl;
 
 import com.mcsoft.crawler.handler.AbstractRuleMapHandler;
+import com.mcsoft.exception.HandleException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -18,11 +19,14 @@ public class HtmlJSoupHandler extends AbstractRuleMapHandler<Map<String, String>
     }
 
     @Override
-    public Map<String, String> handle(String content) {
+    public Map<String, String> handle(String content) throws HandleException {
         Map<String, String> ruleMap = this.getRuleMap();
         Map<String, String> resultMap = new HashMap<>();
-        if (null == ruleMap || ruleMap.size() == 0 || null == content || "".equals(content)) {
-            return null;
+        if (null == ruleMap || ruleMap.size() == 0) {
+            throw new HandleException("规则设置为空");
+        }
+        if (null == content || "".equals(content)) {
+            throw new HandleException("数据为空");
         }
         Document document = Jsoup.parse(content);
         for (Map.Entry<String, String> entry : ruleMap.entrySet()) {
@@ -38,9 +42,8 @@ public class HtmlJSoupHandler extends AbstractRuleMapHandler<Map<String, String>
                 String rule = rules[i];
                 nodes = nodes.select(rule);
             }
-            if(nodes.isEmpty()){
-                System.out.println("规则设置有问题，爬取的页面没有获取到node:"+name);
-                return null;
+            if (nodes.isEmpty()) {
+                throw new HandleException("规则设置有问题，爬取的页面没有获取到node:" + name + "，json:" + content);
             }
             if ("text".equals(rules[finalIndex])) {
                 value = nodes.text();

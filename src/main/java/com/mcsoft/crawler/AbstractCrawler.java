@@ -45,10 +45,23 @@ public abstract class AbstractCrawler<T> implements Crawler {
         this.headers = new HashMap<>();
     }
 
+    public Map<String, String> getHeaders() {
+        return headers;
+    }
+
+    public void setHeaders(Map<String, String> headers) {
+        this.headers = headers;
+    }
+
+    public T craw(String url,String body) throws Exception {
+        this.setBody(body);
+        return craw(url);
+    }
+
     @Override
-    public T craw(String url) {
+    public T craw(String url) throws Exception{
         if (null == url || "".equals(url)) {
-            return null;
+            throw new Exception("URL为空");
         }
         String content = PageLoader.loadPage(url, method, headers, body);
         return handler.handle(content);

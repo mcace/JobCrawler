@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost
 Source Server Version : 50712
 Source Host           : localhost:23306
-Source Database       : lagou
+Source Database       : lagou_test
 
 Target Server Type    : MYSQL
 Target Server Version : 50712
 File Encoding         : 65001
 
-Date: 2017-12-22 00:14:30
+Date: 2017-12-25 22:01:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -48,7 +48,7 @@ CREATE TABLE `lagou_position_info` (
   `imState` varchar(20) NOT NULL DEFAULT '',
   `longitude` varchar(20) NOT NULL DEFAULT '',
   `latitude` varchar(20) NOT NULL DEFAULT '',
-  `linestaion` varchar(300) NOT NULL DEFAULT '',
+  `lineStation` varchar(300) NOT NULL DEFAULT '',
   `lastLogin` bigint(20) unsigned NOT NULL DEFAULT '0',
   `pcShow` int(1) unsigned NOT NULL DEFAULT '0',
   `positionName` varchar(40) NOT NULL DEFAULT '',
@@ -58,11 +58,11 @@ CREATE TABLE `lagou_position_info` (
   `publisherId` int(11) unsigned NOT NULL DEFAULT '0',
   `plus` varchar(10) NOT NULL DEFAULT '',
   `processed` int(1) unsigned NOT NULL DEFAULT '0' COMMENT '数据是否已经被处理',
-  `subwayline` varchar(20) NOT NULL DEFAULT '',
+  `subwayLine` varchar(20) NOT NULL DEFAULT '',
   `score` int(3) unsigned NOT NULL DEFAULT '0',
   `secondType` varchar(30) NOT NULL DEFAULT '',
   `salary` varchar(10) NOT NULL DEFAULT '',
-  `stationname` varchar(10) NOT NULL DEFAULT '',
+  `stationName` varchar(10) NOT NULL DEFAULT '',
   `workYear` varchar(10) NOT NULL DEFAULT '',
   PRIMARY KEY (`positionId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='拉勾网职位信息表。';
