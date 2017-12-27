@@ -15,4 +15,7 @@ com.mcsoft.bean.lagou.params.LagouFormParam
 以及加载配置文件的工具类
 com.mcsoft.utils.ConfigLoader.loadLagouXXXXHeaders()
 
-后续可以将其做成全部通过配置文件读取的方式，而不是修改类
+如果你只想要修改配置达到爬取不同数据的目的，那么修改LagouURLParam、LagouFormParam类的数据即可
+如果要进行针对其他网站的二次开发，那么可以将URL之类的常量放进com.mcsoft.utils.Constants，在Resource目录下写新的请求头文件及正则匹配规则文件，在bean目录下创建新的实体类和请求体、url参数类
+
+后续计划可以将其做成全部通过配置文件读取的方式，而不是修改类
