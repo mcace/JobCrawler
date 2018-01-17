@@ -1,19 +1,21 @@
 在bean包下创建实体类或数据类
 在crawler/handler下创建数据处理器
-    处理器实现DataHandler接口，该接口只有一个handle(String)方法，接收爬虫爬取并转换为String的数据，
-    返回自定义的对象
-当数据类可以直接通过JSON转换时，可以直接使用com.mcsoft.crawler.AjaxCrawler类
-当直接需要HTML源码时，可以直接使用com.mcsoft.crawler.HtmlCrawler类
-当需要匹配HTML源码并输出类似Map<String,String>类型的数据时，可以使用com.mcsoft.crawler.HtmlJSoupCrawler类
+    处理器实现DataHandler接口，该接口只有一个handle(String)方法，接收爬虫爬取并转换为String的数据，返回自定义的对象
+当数据类可以直接通过JSON转换时，可以直接使用com.mcsoft.crawler.AjaxCrawler类，该类使用的handler实际上是fastjson作为处理工具，可以将json数据直接转为实体类
+当直接需要HTML源码时，可以直接使用com.mcsoft.crawler.HtmlCrawler类，该类直接将爬取出的http响应体内容转为String后返回
+当需要类似正则匹配匹配HTML源码并输出类似Map<String,String>类型的数据时，可以使用com.mcsoft.crawler.HtmlJSoupCrawler类，该类使用的handler实际上是jsoup作为处理工具，可以将规则中指定的数据匹配出来，因此使用时需要传递一个RuleMap作为参数
     关于RuleMap的规则可以参考resources/craw-rules/lagou-position-detail.properties文件
 当你有自己实现的DataHandler时，使用CustomCrawler，自定义返回类型并将DataHandler实现类的对象传入构造方法中
-    提示：你可以在自定义的DataHandler里加一个HtmlJSoupHandler，这个Handler的handle方法会根据RuleMap返回KV对集合
-    ，你可以在后续特殊处理这个KV对集合，然后返回你需要的数据类，相当于这个Handler是HtmlJSoupHandler的包装类
-上述三个类实现了Crawler接口，该接口只有一个方法craw(url)，接收url并返回指定类型的对象
-实际使用中Crawler还需要根据情况设置请求方法（String），请求头（Map<String,String>）和请求体（String）
-在进行爬取时这些参数会附加进去
+    提示：你可以在自定义的DataHandler里加一个HtmlJSoupHandler，这个Handler的handle方法会根据RuleMap返回KV对集合，你可以在后续特殊处理这个KV对集合，然后返回你需要的数据类，相当于这个Handler是HtmlJSoupHandler的包装类
+上述三个类实现了Crawler接口，该接口有一个方法craw(String url)，接收url并返回指定类型的对象，以及AjaxCrawler和HtmlJSoupCrawler重载了一个craw(String url,String body)方法，可以在使用时附带请求体内容。
+实际使用中Crawler还需要根据情况设置请求方法（String），请求头（Map<String,String>）和请求体（String）。在进行爬取时这些参数会附加进去。
 url参数、请求头、请求体，需要自行处理，对应拉勾网已有的实现为
 com.mcsoft.bean.lagou.params.LagouURLParam
-com.mcsoft.utils.ConfigLoader.loadLagouXXXXHeaders()
 com.mcsoft.bean.lagou.params.LagouFormParam
-后续可以将其做成全部通过配置文件读取的方式，而不是修改类
+以及加载配置文件的工具类
+com.mcsoft.utils.ConfigLoader.loadLagouXXXXHeaders()
+
+如果你只想要修改配置达到爬取不同数据的目的，那么修改LagouURLParam、LagouFormParam类的数据即可
+如果要进行针对其他网站的二次开发，那么可以将URL之类的常量放进com.mcsoft.utils.Constants，在Resource目录下写新的请求头文件及正则匹配规则文件，在bean目录下创建新的实体类和请求体、url参数类
+
+后续计划可以将其做成全部通过配置文件读取的方式，而不是修改类
